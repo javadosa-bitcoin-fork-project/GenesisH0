@@ -60,6 +60,10 @@ def create_input_script(psz_timestamp):
   if len(timestamp_bytes) > 76: psz_prefix = '4c'
 
   length_in_hex = hex(len(timestamp_bytes))[2:]
+  
+  if len(length_in_hex) == 1:
+    length_in_hex = "0" + length_in_hex
+  
   script_prefix = '04ffff001d0104' + psz_prefix + length_in_hex
   input_script_hex = script_prefix + timestamp_bytes.hex()
   print(input_script_hex)
